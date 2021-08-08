@@ -1,24 +1,31 @@
-# README
+# sharE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+*ライブやフェスなどの情報共有サイト
 
-Things you may want to cover:
+### サイトテーマ
+*ライブやフェスなど情報を共有し、コミュニティを広げてもらう
 
-* Ruby version
+### テーマを選んだ理由
+前職でライブやフェスに関わる仕事をしていたため、その知識や関心を生かせるものを作りたかったため
 
-* System dependencies
+### ターゲットユーザ
+ライブやフェスに行く人々
 
-* Configuration
+### 主な利用シーン
+ライブの期待度や評価、情報、感想の共有
 
-* Database creation
 
-* Database initialization
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/1OR258yYDfLtGPpvPjQXAw9RjmENK_F97_fVJ9nR3CF8/edit#gid=0
 
-* How to run the test suite
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
