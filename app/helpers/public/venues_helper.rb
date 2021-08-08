@@ -1,0 +1,2 @@
+module Public::VenuesHelper
+end
