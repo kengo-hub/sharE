@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :events
     resources :users, except: [:new, :destroy, :create]
-    resources :genres, except: [:new, :show]
-    resources :items
+    resources :venues
+    resources :artists
     get 'search' => 'searchs#search'
   end
   
