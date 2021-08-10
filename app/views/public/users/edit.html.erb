@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="ccol-lg-11 offset-lg-1">
+      <%= form_with model:@user, url:users_info_edit_path, local:true do |f| %>
+      <table class="table">
+        <tr>
+          <th class="">ニックネーム</th>
+          <td><%= f.text_field :nickname %></td>
+        </tr>
+        <tr>
+          <th class="">プロフィール画像</th>
+          <td><%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %></td>
+        </tr>
+         <tr>
+          <th class="">年齢</th>
+          <td><%= f.select :age, options_for_select(User.ages_i18n.invert,:selected =>@user.age ) %></td>
+        </tr>
+        <tr>
+          <th class="">自己紹介</th>
+          <td><%= f.text_area :introduction %></td>
+        </tr>
+          
+      </table>
+
+      <div>
+        <%= f.submit "編集内容を保存",class: "btn btn-sm btn-success" %>
+        <% end %>
+      </div>
+      <br>
+      <div>
+        <%= link_to "退会する",user_confirm_path , method: :POST, class: "btn btn-sm btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

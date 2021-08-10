@@ -4,7 +4,7 @@ class CreateVenues < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.string :postcode, null: false
       t.string :address, null: false
-      t.integer :prefectures, null: false
+      t.integer :prefectures, null: false, default: 0
 
       t.timestamps
     end

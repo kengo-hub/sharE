@@ -11,6 +11,11 @@
           ニックネーム<br>
           <span><%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %></span>
         </div>
+        
+        <div class="field">
+          年齢<br>
+          <span><%= f.select :age, options_for_select(User.ages_i18n.invert,:selected =>0 ) %></span>
+        </div>
 
         <div class="field">
           メールアドレス<br/>

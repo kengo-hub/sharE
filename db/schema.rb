@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_08_102118) do
+ActiveRecord::Schema.define(version: 2021_08_09_023521) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -39,6 +39,13 @@ ActiveRecord::Schema.define(version: 2021_08_08_102118) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -48,8 +55,10 @@ ActiveRecord::Schema.define(version: 2021_08_08_102118) do
     t.string "nickname", null: false
     t.boolean "is_deleted", default: false, null: false
     t.text "introduction"
+    t.integer "age", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_image_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -58,7 +67,7 @@ ActiveRecord::Schema.define(version: 2021_08_08_102118) do
     t.string "name", null: false
     t.string "postcode", null: false
     t.string "address", null: false
-    t.integer "prefectures", null: false
+    t.integer "prefectures", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
