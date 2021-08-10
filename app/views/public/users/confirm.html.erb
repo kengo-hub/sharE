@@ -1,0 +1,22 @@
+<div class="container i-show-empty">
+  <div class="row my-3">
+    <div class="ccol-lg-11 offset-lg-1">
+      <h4>
+        本当に退会しますか？
+      </h4>
+
+      <p>
+        退会するとお使いのメールアドレスでログインできなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。
+      </p>
+
+      <div>
+        <%= link_to "退会しない",user_path(current_user),class: "btn btn-sm btn-success" %>
+      </div>
+      <br>
+      <div>
+        <%= link_to "退会する", user_hide_path, method: :patch, data: { confilm: "本当に退会しますか？" }, class: "btn btn-sm btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

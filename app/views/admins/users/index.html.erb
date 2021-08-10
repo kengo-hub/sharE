@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="ccol-lg-11 offset-lg-1">
+      <h4>会員一覧</h4>
+      <table class="table">
+        <thead class="">
+          <tr>
+            <th class=''>会員ID</th>
+            <th></th>
+            <th class=''>ニックネーム</th>
+            <th class=''>年齢</th>
+            <th class=''>メールアドレス</th>
+            <th class=''>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+         <% @users.each do |user| %>
+          <tr class=''>
+           <td class=''><%= user.id %></td>
+           <td><%= attachment_image_tag user, :profile_image, :fill, 100, 100, size: "70x70", format:'jpeg', fallback:"no_image.jpg" %></td>
+           <td class=''><%= link_to user.nickname,admins_user_path(user.id) %></td>
+           <td class=''><%= user.age_i18n %></td>
+           <td class=''><%= user.email%></td>
+           <td class=''><%= user.is_deleted ? '退会' : '有効' %></td>
+          </tr>
+        <% end %>
+        <%= paginate @users %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -8,12 +8,12 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
+
   <header>
     <nav class="navbar navbar-expand-lg navbar-white bg-dark border">
       <div class="container">
         <%= link_to root_path do %>
-          <%= image_tag 'log_2.png',:size =>'100x100' %>
+          <%= image_tag 'log_3.png',:size =>'100x100' %>
         <% end %>
         <% if user_signed_in? %>
           <span class="fas text-white">ようこそ,<%= current_user.nickname %>さん!</span>
@@ -24,17 +24,17 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-            <li><%= link_to ' マイページ',users_path(current_user),class: 'fas fa-address-card nav-link text-white' %></li>
+            <li><%= link_to ' マイページ',user_path(current_user),class: 'fas fa-address-card nav-link text-white' %></li>
             <li><%= link_to ' イベント一覧',events_path,class: 'fas fa-guitar nav-link text-white' %></li>
             <li><%= link_to ' 会場一覧',venues_path ,class: 'fas fa-ring nav-link text-white'%></li>
             <li><%= link_to ' アーティスト一覧',artists_path ,class: 'fas fa-user-friends nav-link text-white'%></li>
-            <li><%= link_to ' ログアウト', user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-white' %></li>
+            <li><%= link_to ' ログアウト', destroy_user_session_path, method: :delete,class: 'fas fa-sign-out-alt nav-link text-white' %></li>
 
           <% elsif admin_signed_in? %>
-            <li><%= link_to ' イベント一覧',admin_events_path,class: 'fas fa-guitar text-white' %></li>
-            <li><%= link_to ' 会場一覧',admin_venues_path,class: 'fas fa-ring text-white' %></li>
-            <li><%= link_to ' アーティスト一覧',admin_artists_path ,class: 'fas fa-user-friends text-white'%></li>
-            <li><%= link_to ' ユーザー一覧',admin_users_path,class: 'fas nav-link text-white' %></li>
+            <li><%= link_to ' イベント一覧',admins_events_path,class: 'fas nav-link text-white' %></li>
+            <li><%= link_to ' 会場一覧',admins_venues_path,class: 'fas nav-link text-white' %></li>
+            <li><%= link_to ' アーティスト一覧',admins_artists_path ,class: 'fas nav-link text-white'%></li>
+            <li><%= link_to ' ユーザー一覧',admins_users_path,class: 'fas nav-link text-white' %></li>
             <li><%= link_to ' ログアウト', destroy_admin_session_path, method: :delete,class: 'fas nav-link text-white' %></li>
 
           <% else %>
@@ -48,7 +48,7 @@
           </ul>
         </div>
       </div>
-     
+
     </nav>
   </header>
 

@@ -1,0 +1,17 @@
+ja:
+  enums:
+    user:
+      age:
+        '---': "---"
+        early_teeens: "10代前半"
+        late_teens: "10代後半"
+        early_twenties: "20代前半"
+        late_twenties: "20代後半"
+        early_thirties: "30代前半"
+        late_thirties: "30代後半"
+        early_forties: "40代前半"
+        late_forties: "40代後半"
+        early_fifties: "50代前半"
+        late_fifties: "50代後半"
+        over_sixties: "60代以上"
+        
