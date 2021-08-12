@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row my-3">
+        <div class="col-lg-12 i-show-empty">
+            <h4>商品詳細</h4>
+            <div class="a-i-s">
+                <div class="pt-5">
+                    <%= attachment_image_tag @venue, :image, :fill, 250, 200, format:'jpeg', fallback:"no_image.jpg" %>
+                </div>
+                <div class="ml-5 mb-5">
+                    <table class="table">
+                        <tr>
+                            <th class="">会場名</th>
+                            <td><%= @venue.name %></td>
+                        </tr>
+                        <tr>
+                            <th class="">郵便番号</th>
+                            <td><%= @venue.postcode %></td>
+                        </tr>
+                            <th class="">住所</th>
+                            <td><%= @venue.address %></td>
+                        </tr>
+                            <th class="">都道府県</th>
+                            <td><%= @venue.prefecture %></td>
+                        </tr>
+                        <tr>
+                            <th class="">評価</th>
+                            <td><%= @venue.rate %></td>
+                        </tr>
+                    </table>
+                <%= link_to "編集する", edit_admins_venue_path(@venue), class: "btn btn-success" %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="container">
+  <div clsss="row my-3">
+    <div class="">
+      <div class="my-3 h4">会場一覧</div>
+      <div class="my-3">
+      <%= link_to new_admins_venue_path do %>
+        <div class="fas fa-plus h4 plus-botton"></div>
+      <% end %>
+    </div>
+    </div>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>会場名</th>
+          <th>都道府県</th>
+          <th>評価</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @venue.each do |venue| %>
+          <tr>
+            <td>
+              <%= link_to admins_venue_path(venue) do %>
+                <%= venue.name %>
+              <% end %>
+            </td>
+            <td><%= venue.prefecture %></td>
+            <td><%= venue.rate %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="paginate mb-3">
+      <%= paginate @venue %>
+    </div>
+  </div>
+</div>
