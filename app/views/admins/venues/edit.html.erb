@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row my-3">
+    <div class="ccol-lg-11 offset-lg-1">
+      <%= form_with model:@venue, url:admins_venue_path, local:true do |f| %>
+      <table class="table">
+        <tr>
+          <th class="">会場名</th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <th class="">会場写真</th>
+          <td><%= f.attachment_field :image, placeholder: "会場写真" %></td>
+        </tr>
+         <tr>
+          <th class="">郵便番号</th>
+          <td><%= f.text_field :postcode %></td>
+        </tr>
+        <tr>
+          <th class="">住所</th>
+          <td><%= f.text_area :address %></td>
+        </tr>
+        <tr>
+          <th class="">都道府県</th>
+          <td><%= f.select :prefecture, Venue.prefectures.keys, {prompt: '選択してください'}, class: 'form-control btn btn-info' %></td>
+        </tr>
+      </table>
+
+      <div>
+        <%= f.submit "編集内容を保存",class: "btn btn-sm btn-success" %>
+        <% end %>
+      </div>
+      <br>
+      <div>
+      <%= link_to '削除する', admins_venue_path(@venue), method: :delete, class: "btn btn-sm btn-danger" %>
+      </div>
+      <br>
+      
+    </div>
+  </div>
+</div>
