@@ -14,7 +14,7 @@ class Admins::VenuesController < ApplicationController
   def create
     @venue = Venue.new(venue_params)
     @venue.save
-    redirect_to admin_venue_path(@vanue)
+    redirect_to admins_venues_path
   end
   
   def edit
