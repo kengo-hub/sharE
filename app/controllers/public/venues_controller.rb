@@ -5,8 +5,8 @@ class Public::VenuesController < ApplicationController
   
   def show
     @venue = Venue.find(params[:id])
-    gon.venue = @venue
     @review = Review.new
+    @reviews = Review.all
   end
   
   
