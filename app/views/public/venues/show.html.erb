@@ -71,10 +71,19 @@
                             </td>
                         </tr>
                     </table>
-                <%= link_to "編集する", edit_admins_venue_path(@venue), class: "btn btn-success" %>
                 </div>
             </div>
-        <% @venue.reviews.each do |review| %>
+            <%= form_with(model: [@venue, @review], url: venue_reviews_path(@venue), local: true) do |f| %>
+            <%= f.text_area :content, rows:'5', placeholder: "コメント", class: "form-control form-control-sm" %>
+            <div id="rating-form">
+                <label>評価：</label>
+                <%= f.hidden_field :rate, :value => 'score' %>
+                <%= f.hidden_field :user_id, :value => current_user.id %>
+            </div>
+            <%= f.submit "投稿する" %>
+            <% end %>
+
+            <% @venue.reviews.each do |review| %>
             <div class="pt-2 px-2" style="background-color: #fffffe; border: 2px solid #272343; border-radius: 2px;">
                 <div class="review-rating" data-score="<%= review.rate %>">評価：</div>
                 
@@ -86,19 +95,30 @@
                 <div class="text-right">
                     <p>
                         投稿日：<%= review.created_at.strftime('%Y/%m/%d') %> |
+                        <% if review.user == current_user %>
                             <%= link_to venue_review_path(review.venue, review), method: :delete, class: "btn btn-sm btn-danger" do %>
                                 コメント削除 <i class="fas fa-trash"></i>
+                        <% end %>
                         <% end %>
                     </p>
                 </div>
             </div>
         
             <div class="pb-2"></div>
+        
         <% end %>
+            
         </div>
     </div>
 </div>
 
+<script>
+    $('#rating-form').raty({
+        starOn: "<%= asset_path('star-on.png') %>",
+        starOff: "<%= asset_path('star-off.png') %>",
+        scoreName: 'review[rate]'
+    });
+</script>
 
 <script>
   $('.review-rating').raty({
@@ -121,8 +141,3 @@
     }
   });
 </script>
-
-
-
-
-
