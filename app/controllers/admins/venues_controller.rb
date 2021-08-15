@@ -5,6 +5,12 @@ class Admins::VenuesController < ApplicationController
   
   def show
     @venue = Venue.find(params[:id])
+    @reviews = Review.all
+    if @venue.reviews.blank?
+      @average_review = 0
+    else
+      @average_review = @venue.reviews.average(:rate).round(2)
+    end
   end
   
   def new
