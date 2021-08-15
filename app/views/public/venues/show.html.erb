@@ -65,7 +65,10 @@
                         </tr>
                         <tr>
                             <th class="">評価</th>
-                            <td><%= @venue.rate %></td>
+                            <td>
+                                <div class="average-review-rating" data-score=<%= @average_review %>></div>
+                                <%=@average_review%>点
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -124,5 +127,17 @@
       return $(this).attr('data-score');
     },
     path: '/assets/'
+  });
+</script>
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: function() {
+      return $(this).attr('data-score')
+    }
   });
 </script>
