@@ -1,6 +1,7 @@
 class Public::VenuesController < ApplicationController
   def index
     @venues = Venue.page(params[:page])
+    @reviews = Review.all
   end
   
   def show
