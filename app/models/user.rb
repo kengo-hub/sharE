@@ -22,7 +22,9 @@ class User < ApplicationRecord
 
   def following?(user)
     followings.include?(user)
-  end  
+  end
+  
+  enum sex: { man: 0, woman: 1}
   
   enum age: {
     '---': 0,

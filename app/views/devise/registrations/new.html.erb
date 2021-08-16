@@ -12,6 +12,14 @@
           <span><%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %></span>
         </div>
         
+        <div class="sex-field">
+          <%= f.label :性別 %><br />
+          <%= f.label :男性  %>
+          <%= f.radio_button :sex, :man %>
+          <%= f.label :女性  %>
+          <%= f.radio_button :sex, :woman %>
+        </div>
+        
         <div class="field">
           年齢<br>
           <span><%= f.select :age, options_for_select(User.ages_i18n.invert,:selected =>0 ) %></span>
