@@ -102,7 +102,7 @@
         
                 <div class="text-right">
                     <p>
-                        投稿日：<%= review.created_at.strftime('%Y/%m/%d') %> |
+                        投稿日：<%= review.created_at.strftime("%Y-%m-%d %H:%M") %> |
                         <% if review.user == current_user %>
                             <%= link_to venue_review_path(review.venue, review), method: :delete, class: "btn btn-sm btn-danger" do %>
                                 コメント削除 <i class="fas fa-trash"></i>
