@@ -6,6 +6,8 @@ class User < ApplicationRecord
          
   attachment :profile_image
   
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

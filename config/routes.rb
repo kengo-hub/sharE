@@ -10,7 +10,8 @@ Rails.application.routes.draw do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
-    
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create,:show]
     get 'users_info/edit' => 'users#edit',as: 'edit_users'
     patch 'users_info/edit' => 'users#update'
     post 'user/confirm' => 'users#confirm'
