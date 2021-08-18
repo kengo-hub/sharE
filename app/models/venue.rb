@@ -1,5 +1,6 @@
 class Venue < ApplicationRecord
   has_many :reviews, dependent: :destroy
+  has_many :event
   geocoded_by :address
   after_validation :geocode
   

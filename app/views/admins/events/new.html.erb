@@ -1,2 +1,32 @@
-<h1>Admins::Events#new</h1>
-<p>Find me in app/views/admins/events/new.html.erb</p>
+<div class="container">
+  <div class="row my-3">
+    <div class="col-lg-12 i-show-empty">
+      <h4 class="pr-3 pt-3">イベント登録</h4>
+      <%= form_with model:@event, url: admins_events_path, local:true do |f| %>
+      <table class="table">
+          <tr>
+            <th class="">イベント名</th>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <th class="">会場名</th>
+            <td><%= f.collection_select :venue_id , Venue.select("name,id"), :id, :name , :include_blank => "選択してください" %></td>
+          </tr>
+           <tr>
+            <th class="">アーティスト名</th>
+            <td><%= f.collection_select :artist_id , Artist.select("name,id"), :id, :name , :include_blank => "選択してください" %></td>
+          </tr>
+          <tr>
+            <th class="">開催日</th>
+            <td><div class="field">
+              <%= f.date_field :event_date %>
+            </div></td>
+          </tr>
+            
+        </table>
+        
+        <%= f.submit "新規登録", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>
