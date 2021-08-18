@@ -33,7 +33,12 @@
                 <%= venue.reviews.average(:rate).round(2) %>
               <% end %>
                 ></div>
-              <%= venue.reviews.average(:rate).round(2) %>点（<%= venue.reviews.count%>件の評価）
+              <% if venue.reviews.blank? %>
+                <%= 0 %>
+              <% else %>
+              <%= venue.reviews.average(:rate).round(2) %>
+              <% end %>
+              点（<%= venue.reviews.count%>件の評価）
             </td>
           </tr>
         <% end %>

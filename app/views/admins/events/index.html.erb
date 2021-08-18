@@ -1,2 +1,69 @@
-<h1>Admins::Events#index</h1>
-<p>Find me in app/views/admins/events/index.html.erb</p>
+
+<div class="container">
+  <div clsss="row my-3">
+    <div class="">
+      <div class="my-3 h4">イベント一覧</div>
+      <div class="my-3">
+      <%= link_to new_admins_event_path do %>
+        <div class="fas fa-plus h4 plus-botton"></div>
+      <% end %>
+    </div>
+    </div>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>イベント名</th>
+          <th>会場名</th>
+          <th>アーティスト名</th>
+          <th>開催日</th>
+          <th>評価</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @events.each do |event| %>
+          <tr>
+            <td>
+              <%= link_to admins_event_path(event) do %>
+                <%= event.name %>
+              <% end %>
+            </td>
+            <td><%= event.venue.name %></td>
+            <td><%= event.artist.name %></td>
+            <td><%= event.event_date %></td>
+            <td>
+              <div class="average-review-rating" data-score=
+              <% if event.reviews.blank? %>
+                <%= 0 %>
+              <% else %>
+                <%= event.reviews.average(:rate).round(2) %>
+              <% end %>
+                ></div>
+              <% if event.reviews.blank? %>
+                <%= 0 %>
+              <% else %>
+              <%= event.reviews.average(:rate).round(2) %>
+              <% end %>
+              点（<%= event.reviews.count%>件の評価）
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="paginate mb-3">
+      <%= paginate @events %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
+
