@@ -14,4 +14,6 @@ ja:
         early_fifties: "50代前半"
         late_fifties: "50代後半"
         over_sixties: "60代以上"
-   
+      sex:
+        man: "男性"
+        woman: "女性"

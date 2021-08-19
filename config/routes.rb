@@ -10,14 +10,19 @@ Rails.application.routes.draw do
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
     end
-    
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create,:show]
     get 'users_info/edit' => 'users#edit',as: 'edit_users'
     patch 'users_info/edit' => 'users#update'
     post 'user/confirm' => 'users#confirm'
     patch 'user/hide' => 'users#hide'
-    resources :events, only: [:index, :show]
-    resources :venues, only: [:index, :show]
-    resources :artists, only: [:index, :show]
+    resources :events, only: [:index, :show] do
+      resources :event_reviews, only: [:index, :create, :destroy]
+    end
+    resources :venues, only: [:index, :show] do
+      resources :venue_reviews, only: [:index, :create, :destroy]
+    end
+    resources :artists, only: [:index, :show] 
     get 'search' => 'searchs#search'
   end
   
@@ -28,6 +33,4 @@ Rails.application.routes.draw do
     resources :artists
     get 'search' => 'searchs#search'
   end
-  
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

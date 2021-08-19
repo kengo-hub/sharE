@@ -1,0 +1,34 @@
+<div class="container">
+  <div clsss="row my-3">
+    <div class="">
+      <div class="my-3 h4">アーティスト一覧</div>
+      <div class="my-3">
+      <%= link_to new_admins_artist_path do %>
+        <div class="fas fa-plus h4 plus-botton"></div>
+      <% end %>
+    </div>
+    </div>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>名前</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @artists.each do |artist| %>
+          <tr>
+            <td>
+              <%= link_to admins_artist_path(artist) do %>
+                <%= artist.name %>
+              <% end %>
+            </td>
+            
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="paginate mb-3">
+      <%= paginate @artists %>
+    </div>
+  </div>
+</div>

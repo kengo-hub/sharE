@@ -25,7 +25,21 @@
               <% end %>
             </td>
             <td><%= venue.prefecture %></td>
-            <td><%= venue.rate %></td>
+            <td>
+              <div class="average-review-rating" data-score=
+              <% if venue.reviews.blank? %>
+                <%= 0 %>
+              <% else %>
+                <%= venue.reviews.average(:rate).round(2) %>
+              <% end %>
+                ></div>
+              <% if venue.reviews.blank? %>
+                <%= 0 %>
+              <% else %>
+              <%= venue.reviews.average(:rate).round(2) %>
+              <% end %>
+              点（<%= venue.reviews.count%>件の評価）
+            </td>
           </tr>
         <% end %>
       </tbody>
@@ -35,3 +49,16 @@
     </div>
   </div>
 </div>
+
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
+

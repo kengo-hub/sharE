@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_111325) do
+ActiveRecord::Schema.define(version: 2021_08_17_083203) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 2021_08_10_111325) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_entries_on_room_id"
+    t.index ["user_id"], name: "index_entries_on_user_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.integer "venue_id", null: false
     t.integer "artist_id", null: false
@@ -39,11 +48,42 @@ ActiveRecord::Schema.define(version: 2021_08_10_111325) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.text "message"
+    t.string "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "venue_id"
+    t.integer "event_id"
+    t.string "content"
+    t.float "rate", default: 0.0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_reviews_on_event_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["venue_id"], name: "index_reviews_on_venue_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -59,6 +99,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_111325) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "profile_image_id"
+    t.integer "sex"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -72,6 +113,8 @@ ActiveRecord::Schema.define(version: 2021_08_10_111325) do
     t.datetime "updated_at", null: false
     t.float "rate", default: 0.0, null: false
     t.string "image_id"
+    t.float "latitude"
+    t.float "longitude"
   end
 
 end
