@@ -74,7 +74,7 @@
                 </div>
             </div>
             <% if user_signed_in? %>
-            <%= form_with(model: [@venue, @review], url: venue_reviews_path(@venue), local: true) do |f| %>
+            <%= form_with(model: [@venue, @review], url: venue_venue_reviews_path(@venue), local: true) do |f| %>
             <%= f.text_area :content, rows:'5', placeholder: "コメント", class: "form-control form-control-sm" %>
             <div id="rating-form">
                 <label>評価：</label>
@@ -104,7 +104,7 @@
                     <p>
                         投稿日：<%= review.created_at.strftime("%Y-%m-%d %H:%M") %> |
                         <% if review.user == current_user %>
-                            <%= link_to venue_review_path(review.venue, review), method: :delete, class: "btn btn-sm btn-danger" do %>
+                            <%= link_to venue_venue_review_path(review.venue, review), method: :delete, class: "btn btn-sm btn-danger" do %>
                                 コメント削除 <i class="fas fa-trash"></i>
                         <% end %>
                         <% end %>
