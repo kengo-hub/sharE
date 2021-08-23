@@ -1,0 +1,15 @@
+<div class="container">
+  <div clsss="row my-3">
+    <div class="my-3 h4">イベントカレンダー</div>
+      <%= month_calendar events: @events do |date, event| %>
+        <%= date.day %>
+        <% event.each do |event| %>
+          <div class="event-name">
+            <%= link_to event_path(event.id) do %>
+              <%= event.artist.name %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+</div>

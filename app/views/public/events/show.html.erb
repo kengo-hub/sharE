@@ -88,11 +88,15 @@
                         <% end %>
                         <% end %>
                     </p>
+                    
+                     <% Comment.where(review_id: review.id).each do |comment| %>
+                        <%= comment.content %>
+                    <% end %>
+                    
                 </div>
             </div>
         
-            <div class="pb-2"></div>
-        
+
         <% end %>
             
         </div>
