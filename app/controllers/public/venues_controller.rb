@@ -1,11 +1,12 @@
 class Public::VenuesController < ApplicationController
-  
+
   def index
     @venues = Venue.page(params[:page])
     @reviews = Review.all
   end
 
   def show
+    @comment = Comment.new
     @venue = Venue.find(params[:id])
     @review = Review.new
     @reviews = Review.all
