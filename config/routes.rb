@@ -17,10 +17,14 @@ Rails.application.routes.draw do
     post 'user/confirm' => 'users#confirm'
     patch 'user/hide' => 'users#hide'
     resources :events, only: [:index, :show] do
-      resources :event_reviews, only: [:index, :create, :destroy]
+      resources :event_reviews, only: [:index, :create, :destroy] do
+        resources :event_comments, only: [:create, :destroy]
+      end
     end
     resources :venues, only: [:index, :show] do
-      resources :venue_reviews, only: [:index, :create, :destroy]
+      resources :venue_reviews, only: [:index, :create, :destroy] do
+        resources :venue_comments, only: [:create, :destroy]
+      end
     end
     resources :artists, only: [:index, :show] 
     get 'search' => 'searchs#search'
