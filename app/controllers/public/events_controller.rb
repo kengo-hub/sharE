@@ -5,6 +5,7 @@ class Public::EventsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @event = Event.find(params[:id])
     @review = Review.new
     @reviews = Review.all

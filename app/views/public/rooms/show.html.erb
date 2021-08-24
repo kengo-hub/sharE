@@ -18,9 +18,7 @@
     <% if @messages.present? %>
       <% @messages.each do |m| %>
         <div class="chat-box">
-          <div class="chat-face">
-            <%= attachment_image_tag m.user, :profile_image, :fill, 100, 100, size: "70x70", format:'jpeg', fallback:"no_image.jpg", class:"user-image" %>
-          </div>
+          
           <div class="chat-hukidashi"> <strong><%= m.message %></strong> <br>
             <%= m.created_at.strftime("%Y-%m-%d %H:%M")%>
           </div>

@@ -1,6 +1,6 @@
 class Public::CommentsController < ApplicationController
   def create
-    review = Review.find(params[:review_id])
+    review = Review.find(event_review_id)
     comment = Comment.new(comment_params)
     comment.user_id = current_user.id
     comment.review_id = review.id
