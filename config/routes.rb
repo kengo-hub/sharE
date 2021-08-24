@@ -18,12 +18,12 @@ Rails.application.routes.draw do
     patch 'user/hide' => 'users#hide'
     resources :events, only: [:index, :show] do
       resources :event_reviews, only: [:index, :create, :destroy] do
-        resources :comments, only: [:create, :destroy]
+        resources :event_comments, only: [:create, :destroy]
       end
     end
     resources :venues, only: [:index, :show] do
       resources :venue_reviews, only: [:index, :create, :destroy] do
-        resources :comments, only: [:create, :destroy]
+        resources :venue_comments, only: [:create, :destroy]
       end
     end
     resources :artists, only: [:index, :show] 
