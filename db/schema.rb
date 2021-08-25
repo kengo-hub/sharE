@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(version: 2021_08_19_105244) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "venue_id"
-    t.bigint "event_id"
-    t.bigint "review_id"
+    t.integer "user_id"
+    t.integer "venue_id"
+    t.integer "event_id"
+    t.integer "review_id"
     t.string "content"
     t.string "image_id"
     t.datetime "created_at", null: false
@@ -46,8 +46,8 @@ ActiveRecord::Schema.define(version: 2021_08_19_105244) do
   end
 
   create_table "entries", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "room_id"
+    t.integer "user_id"
+    t.integer "room_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_entries_on_room_id"
@@ -64,8 +64,8 @@ ActiveRecord::Schema.define(version: 2021_08_19_105244) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "room_id"
+    t.integer "user_id"
+    t.integer "room_id"
     t.text "message"
     t.string "image_id"
     t.datetime "created_at", null: false
@@ -82,9 +82,9 @@ ActiveRecord::Schema.define(version: 2021_08_19_105244) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "venue_id"
-    t.bigint "event_id"
+    t.integer "user_id"
+    t.integer "venue_id"
+    t.integer "event_id"
     t.string "content"
     t.float "rate", default: 0.0, null: false
     t.datetime "created_at", null: false
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2021_08_19_105244) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.bigint "user_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"
