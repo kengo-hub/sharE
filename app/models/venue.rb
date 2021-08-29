@@ -1,6 +1,8 @@
 class Venue < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :event
+  has_many :tagmaps, dependent: :destroy
+  has_many :tags, through: :tagmaps
   geocoded_by :address
   after_validation :geocode
   
