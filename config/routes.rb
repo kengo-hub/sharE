@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'notifications/index'
+  end
   devise_for :admins
   devise_for :users
   root to: 'homes#top'
@@ -27,7 +30,9 @@ Rails.application.routes.draw do
       end
     end
     resources :artists, only: [:index, :show] 
+    resources :notifications, only: [:index, :update] 
     get 'search' => 'searchs#search'
+    
   end
   
   namespace :admins do

@@ -1,0 +1,32 @@
+<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+<div class="container">
+  <div clsss="row my-3">
+      <div class="my-3 h4">通知一覧</div>
+      <div class="my-3">
+        <% if notifications.exists? %>
+          <% @not_complete_flag = 0 %>
+          <% @notifications.each do |notification, i|%>
+            <% if notification.checked == false %>
+              <% visitor = notification.visitor %>
+              <% visited = notification.visited %>
+              <div>
+               <%= link_to user_path(visitor) do %>
+                   <%= visitor.nickname %>さん
+               <% end %>
+               <% if notification.action=='dm' %>
+                  があなたにDMを送りました
+               <% end %>
+               <%= link_to '既読にする',notification_path(notification.id),method: :put %>
+              </div>
+              <% @not_complete_flag = 1 %>
+            <% end %>
+          <% end %>
+          <% if @not_complete_flag == 0 %>
+            <p>通知はございません</p>
+          <% end %>
+        <% else %>
+            <p>通知はございません</p>
+        <% end %>
+      </div>
+  </div>
+</div>
