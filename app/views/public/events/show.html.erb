@@ -15,7 +15,11 @@
                         </tr>
                         <tr>
                             <th class="">会場名</th>
-                            <td><%= @event.venue.name %></td>
+                            <td>
+                                <%= link_to venue_path(@event.venue) do %>
+                                    <%= @event.venue.name %>
+                                <% end %>
+                            </td>
                         </tr>
                         <tr>
                             <th class="">郵便番号</th>
