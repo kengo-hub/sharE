@@ -44,7 +44,7 @@ class Public::SearchsController < ApplicationController
     elsif model == 'venue'
       Venue.where("name LIKE ?", "%#{value}%")
     elsif model == 'artist'
-      A.where("name LIKE ?", "%#{value}%")
+      Artist.where("name LIKE ?", "%#{value}%")
     end
   end
 
