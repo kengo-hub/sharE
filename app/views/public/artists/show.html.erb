@@ -1,16 +1,60 @@
 <div class="container">
     <div class="row my-3">
         <div class="col-lg-12 i-show-empty">
-            <h4>アーティスト情報</h4>
+            <h4>アーティストライブ情報</h4>
                 <div class="ml-5 mb-5">
                     <table class="table">
+                      <thead class="thead-light">
                         <tr>
-                            <th class="">アーティスト名</th>
-                            <td><%= @artist.name %></td>
+                          <th>イベント名</th>
+                          <th>会場名</th>
+                          <th>アーティスト名</th>
+                          <th>開催日</th>
+                          <th>評価</th>
                         </tr>
-                        
+                      </thead>
+                      <tbody>
+                        <% @artist.events.each do |event| %>
+                          <tr>
+                            <td>
+                              <%= link_to event_path(event) do %>
+                                <%= event.name %>
+                              <% end %>
+                            </td>
+                            <td><%= event.venue.name %></td>
+                            <td><%= event.artist.name %></td>
+                            <td><%= event.event_date %></td>
+                            <td>
+                              <div class="average-review-rating" data-score=
+                              <% if event.reviews.blank? %>
+                                <%= 0 %>
+                              <% else %>
+                                <%= event.reviews.average(:rate).round(2) %>
+                              <% end %>
+                                ></div>
+                              <% if event.reviews.blank? %>
+                                <%= 0 %>
+                              <% else %>
+                              <%= event.reviews.average(:rate).round(2) %>
+                              <% end %>
+                              点（<%= event.reviews.count%>件の評価）
+                            </td>
+                          </tr>
+                        <% end %>
+                      </tbody>
                     </table>
                 </div>
         </div>
     </div>
 </div>
+<script>
+  $('.average-review-rating').raty({
+    readOnly: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });
+</script>
