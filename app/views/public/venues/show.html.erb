@@ -71,6 +71,9 @@
                             </td>
                         </tr>
                     </table>
+                    <%= link_to "/venues/#{@venue.id}/venue_events" do %>
+                        <P>この会場で開催されたイベントはこちら</P>
+                    <% end %>
                 </div>
             </div>
             <% if user_signed_in? %>

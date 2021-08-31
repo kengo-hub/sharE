@@ -25,16 +25,18 @@ Rails.application.routes.draw do
       end
     end
     resources :venues, only: [:index, :show] do
+      member do
+        get 'venue_events', to: 'venues#venue_events'
+      end
       resources :venue_reviews, only: [:index, :create, :destroy] do
         resources :venue_comments, only: [:create, :destroy]
       end
     end
-    resources :artists, only: [:index, :show] 
-    resources :notifications, only: [:index, :update] 
+    resources :artists, only: [:index, :show]
+    resources :notifications, only: [:index, :update]
     get 'search' => 'searchs#search'
-    
   end
-  
+
   namespace :admins do
     resources :events
     resources :users, except: [:new, :destroy, :create]
