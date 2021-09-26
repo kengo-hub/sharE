@@ -15,6 +15,10 @@ class Admins::EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.save
     redirect_to admins_events_path
+    tag_list = params[:tag_name].split(",")
+    if @event.save
+      @event.save_events(tag_list)
+    end
   end
 
   def edit
