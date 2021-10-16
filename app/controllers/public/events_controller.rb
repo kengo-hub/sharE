@@ -9,10 +9,10 @@ class Public::EventsController < ApplicationController
     @event = Event.find(params[:id])
     @review = Review.new
     @reviews = Review.all
-    if @event.reviews.blank?
-      @average_review = 0
-    else
-      @average_review = @event.reviews.average(:rate).round(2)
-    end
+    @average_review = if @event.reviews.blank?
+                        0
+                      else
+                        @event.reviews.average(:rate).round(2)
+                      end
   end
 end

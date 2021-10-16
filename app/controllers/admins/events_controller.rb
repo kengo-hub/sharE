@@ -15,10 +15,8 @@ class Admins::EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.save
     redirect_to admins_events_path
-    tag_list = params[:tag_name].split(",")
-    if @event.save
-      @event.save_events(tag_list)
-    end
+    tag_list = params[:tag_name].split(',')
+    @event.save_events(tag_list) if @event.save
   end
 
   def edit
@@ -30,15 +28,14 @@ class Admins::EventsController < ApplicationController
     event.update(event_params)
     redirect_to admins_events_path(event)
   end
-    
+
   def destroy
     event = Event.find(params[:id])
     event.destroy
     redirect_to admins_events_path
   end
-  
+
   def event_params
     params.require(:event).permit(:name, :event_date, :venue_id, :artist_id)
   end
-  
 end

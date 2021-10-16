@@ -3,21 +3,21 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
+
   attachment :profile_image
-  
+
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
-  
+
   has_many :comments, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :entries, dependent: :destroy
   has_many :reviews, dependent: :destroy
-  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
+  has_many :relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :followings, through: :relationships, source: :followed
-  
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
@@ -29,9 +29,9 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
-  enum sex: { man: 0, woman: 1}
-  
+
+  enum sex: { man: 0, woman: 1 }
+
   enum age: {
     '---': 0,
     early_teeens: 1,
@@ -44,7 +44,6 @@ class User < ApplicationRecord
     late_forties: 8,
     early_fifties: 9,
     late_fifties: 10,
-    over_sixties: 11,
+    over_sixties: 11
   }
-  
 end

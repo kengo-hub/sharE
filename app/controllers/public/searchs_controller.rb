@@ -1,8 +1,8 @@
 class Public::SearchsController < ApplicationController
   def search
-    @model = params["search"]["model"]
-    @value = params["search"]["value"]
-    @how = params["search"]["how"]
+    @model = params['search']['model']
+    @value = params['search']['value']
+    @how = params['search']['how']
     @datas = search_for(@how, @model, @value)
   end
 
@@ -20,31 +20,31 @@ class Public::SearchsController < ApplicationController
 
   def forward(model, value)
     if model == 'event'
-      Event.where("name LIKE ?", "#{value}%")
+      Event.where('name LIKE ?', "#{value}%")
     elsif model == 'venue'
-      Venue.where("name LIKE ?", "#{value}%")
+      Venue.where('name LIKE ?', "#{value}%")
     elsif model == 'artist'
-      Artist.where("name LIKE ?", "#{value}%")
+      Artist.where('name LIKE ?', "#{value}%")
     end
   end
 
   def backward(model, value)
     if model == 'event'
-      Event.where("name LIKE ?", "%#{value}")
+      Event.where('name LIKE ?', "%#{value}")
     elsif model == 'venue'
-      Venue.where("name LIKE ?", "%#{value}")
+      Venue.where('name LIKE ?', "%#{value}")
     elsif model == 'artist'
-      Artist.where("name LIKE ?", "%#{value}")
+      Artist.where('name LIKE ?', "%#{value}")
     end
   end
 
   def partical(model, value)
     if model == 'event'
-      Event.where("name LIKE ?", "%#{value}%")
+      Event.where('name LIKE ?', "%#{value}%")
     elsif model == 'venue'
-      Venue.where("name LIKE ?", "%#{value}%")
+      Venue.where('name LIKE ?', "%#{value}%")
     elsif model == 'artist'
-      Artist.where("name LIKE ?", "%#{value}%")
+      Artist.where('name LIKE ?', "%#{value}%")
     end
   end
 
@@ -60,5 +60,4 @@ class Public::SearchsController < ApplicationController
       partical(model, value)
     end
   end
-
 end

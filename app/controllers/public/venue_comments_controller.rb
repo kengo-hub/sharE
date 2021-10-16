@@ -16,6 +16,6 @@ class Public::VenueCommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content,:image_id,:review_id)
+    params.require(:comment).permit(:content, :image_id, :review_id)
   end
 end
