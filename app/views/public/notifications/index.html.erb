@@ -16,7 +16,7 @@
                <% if notification.action=='dm' %>
                   があなたにDMを送りました
                <% end %>
-               <%= link_to '既読にする',notification_path(notification.id),method: :put %>
+               <%= link_to '既読にする',notification_path(notification.id),class: "btn btn-sm btn-success kidoku",method: :put %>
               </div>
               <% @not_complete_flag = 1 %>
             <% end %>
